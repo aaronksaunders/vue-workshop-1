@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div>
-      <img width="10%" src="./assets/logo.png"/>
-    </div>
-
     <!-- 
     ADD THE ROUTER LINK TO LOAD THE HELLOWORLD COMPONENT 
     https://router.vuejs.org/guide/essentials/navigation.html
