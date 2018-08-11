@@ -14,9 +14,9 @@
 
     <!-- the to-do list is rendered here -->
     <ul class="collection">
-      <li class="collection-item" v-for="item in items" v-bind:key="item.id">
-        <h4>{{item.text_title}}</h4>
-        <h6>{{item.text_description}}</h6>
+      <li class="collection-item" v-for="todo in todos" v-bind:key="todo['.key']">
+        <h4>{{todo.title}}</h4>
+        <h6>{{todo.description}}</h6>
         <a class="btn-small red" v-on:click="deleteItem(item.id)">Delete Item</a>
       </li>
     </ul>
