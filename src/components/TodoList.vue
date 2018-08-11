@@ -24,6 +24,9 @@
 </template>
 
 <script>
+
+import db  from './firebase-setup';
+
 export default {
 
   // set the name of the component
@@ -41,10 +44,16 @@ export default {
       title : "To-do List",
       text_title : "",
       text_description : "",
-      items : []
+      items : [],
+      todos : []
     };
   },
-
+  // firebase/firestore section
+  firestore() {
+    return { 
+      todos : db.collection('todos') 
+    }
+  },
   // define a list of methods which can be used by this component
   methods : {
 

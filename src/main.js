@@ -1,13 +1,17 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
-import App from "./App";
+import VueFirestore from "vue-firestore";
+
 import Router from "vue-router";
 import HelloWorld from "./components/HelloWorld";
 import TodoList from "./components/TodoList";
+import App from "./App";
 
 // tell Vue that you want to use the vue-router module
 Vue.use(Router);
+
+Vue.use(VueFirestore);
 
 /* 
 define each component that you want to load
