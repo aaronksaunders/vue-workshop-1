@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 
 var config = {
+  timestampsInSnapshots: true,
   apiKey: "AIzaSyBQNkFYPCV9mYd_Nn6kRbAWCvl3iunpI0k",
   authDomain: "newtestproject-6cac7.firebaseapp.com",
   databaseURL: "https://newtestproject-6cac7.firebaseio.com",
@@ -13,4 +14,7 @@ var config = {
 const firebaseApp = firebase.initializeApp(config);
 
 // this will return the database associated with the app configuration
-export default firebaseApp.firestore();
+const firestore = firebase.firestore();
+const settings = { timestampsInSnapshots: true };
+firestore.settings(settings);
+export default firestore;
