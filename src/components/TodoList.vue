@@ -17,7 +17,9 @@
       <li class="collection-item" v-for="todo in todos" v-bind:key="todo['.key']">
         <h4>{{todo.title}}</h4>
         <h6>{{todo.description}}</h6>
-        <a class="btn-small red" v-on:click="deleteItem(item.id)">Delete Item</a>
+        <div>{{todo.created.toDate()}}</div>
+        <div>{{todo.completed ? "completed":"not completed"}}</div>
+        <a class="btn-small red" v-on:click="deleteItem(todo)">Delete Item</a>
       </li>
     </ul>
   </div>
@@ -44,7 +46,7 @@ export default {
       title : "To-do List",
       text_title : "",
       text_description : "",
-      items : [],
+      bool_completed : false,
       todos : []
     };
   },
@@ -57,25 +59,28 @@ export default {
   // define a list of methods which can be used by this component
   methods : {
 
-    /** add a to-do item to the array */
+    /** add a to-do item to the database */
     addItem : function() {
-      this.items.push({
-        id : "id" + Date.now() + "_"+Math.random(), // create a unique ID for the 
-        text_title : this.text_title,
-        text_description : this.text_description
+      debugger;
+      this.$firestore.todos.add({
+        title : this.text_title,
+        description : this.text_description,
+        completed : false,
+        // firebase uses TIMESTAMPS
+        // https://firebase.google.com/docs/reference/js/firebase.firestore.Timestamp
+        created : new Date()
       })
       this.text_title = "";
       this.text_description = "";
+      this.bool_completed = false;
     },
 
     /** 
     * remove the selected item from the 
     * @param {string} _id the id for the selected to-do item
     */
-    deleteItem : function(_id){
-      this.items = this.items.filter((_item)=>{
-        return _item.id !== _id;
-      });
+    deleteItem : function(_todo){
+      this.$firestore.todos.doc(_todo['.key']).delete()
     }
   }
 };
