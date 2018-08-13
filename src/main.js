@@ -6,6 +6,7 @@ import VueFirestore from "vue-firestore";
 import Router from "vue-router";
 import HelloWorld from "./components/HelloWorld";
 import TodoList from "./components/TodoList";
+import TodoDetail from "./components/TodoDetail";
 import App from "./App";
 
 // tell Vue that you want to use the vue-router module
@@ -20,7 +21,13 @@ when a user visits a certain route
 let router = new Router({
   routes: [
     { path: "/hello", name: "HelloWorld", component: HelloWorld },
-    { path: "/todo", name: "TodoList", component: TodoList }
+    { path: "/todo", name: "TodoList", component: TodoList },
+    { 
+      path: "/todo-detail", 
+      name: "TodoDetail", 
+      component: TodoDetail, 
+      props : true 
+    }
   ]
 });
 
