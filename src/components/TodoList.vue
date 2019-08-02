@@ -1,7 +1,6 @@
 <template>
-    <!-- ASSIGN A NAME TO THIS COMPONENT -->
-    <div class="todo">
-
+  <!-- ASSIGN A NAME TO THIS COMPONENT -->
+  <div class="todo">
     <!-- DISPLAY THE TITLE -->
     <h3>{{title}}</h3>
 
@@ -10,7 +9,7 @@
     <input placeholder="Enter Description" type="text" v-model="text_description" />
 
     <!-- this button is used to add an item to the to-do list -->
-    <a class="btn" v-on:click="addItem"  :disabled=!dataValid>Add Item</a>
+    <a class="btn" v-on:click="addItem" :disabled="!dataValid">Add Item</a>
 
     <!-- the to-do list is rendered here -->
     <ul class="collection">
@@ -27,7 +26,7 @@
 </template>
 
 <script>
-import db from "./firebase-setup";
+import { db } from "../firebase-database";
 
 export default {
   // set the name of the component
@@ -58,11 +57,11 @@ export default {
   // define a list of methods which can be used by this component
   methods: {
     showDetails: function(_todo) {
-      this.$router.push({ name: 'TodoDetail', params: { item: _todo }})
+      this.$router.push({ name: "TodoDetail", params: { item: _todo } });
     },
     /** add a to-do item to the database */
     addItem: function() {
-      this.$firestore.todos.add({
+      db.collection("todos").add({
         title: this.text_title,
         description: this.text_description,
         completed: false,
@@ -80,7 +79,7 @@ export default {
      * @param {string} _id the id for the selected to-do item
      */
     deleteItem: function(_todo) {
-      this.$firestore.todos.doc(_todo[".key"]).delete();
+      db.collection("todos").doc(_todo.id).delete();
     }
   }
 };

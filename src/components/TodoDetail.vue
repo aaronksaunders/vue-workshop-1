@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import db from "./firebase-setup";
+import {db} from "../firebase-database";
 
 export default {
   name: "TodoDetail",
