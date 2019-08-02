@@ -5,13 +5,13 @@ require("firebase/storage");
 
 export const db = firebase
   .initializeApp({
-    apiKey: "AIzaSyCRov_Z4_298PgC7AUs6Xz3L_Ri45bLgMU",
+    apiKey: "AIzaSyCRov_Z4_298PgC7AUs_6Xz3L_Ri45bLgMU",
     authDomain: "glitch-app-16890.firebaseapp.com",
     databaseURL: "https://glitch-app-16890.firebaseio.com",
     projectId: "glitch-app-16890",
     storageBucket: "glitch-app-16890.appspot.com",
     messagingSenderId: "834014912484",
-    appId: "1:834014912484:web:0cffc4c05bc32f46"
+    appId: "1:834014912484:web:0cffc4c05bc3f46"
   })
   .firestore();
 
